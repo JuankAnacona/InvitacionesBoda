@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitación de boda - Ryan & Luisa</title>
+    <meta name="description" content="Invitación de boda estilo vintage para Ryan & Luisa" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <main class="invitation-container" aria-label="Invitación de boda">
+        
+        <!-- Decorative Frame Overlays -->
+        <div class="frame-overlay" aria-hidden="true">
+          <img class="frame-img frame-top" src="/arco-top.png" alt="" />
+          <img class="frame-img frame-mid" src="/arco-mid.png" alt="" />
+          <img class="frame-img frame-bottom" src="/arco-bottom.png" alt="" />
+        </div>
+
+        <!-- Arch Card Container (Clips the map video) -->
+        <div class="arch-card">
+          <video class="arch-video" autoplay muted loop playsinline>
+            <source src="/video_dentro_arcoç.mp4" type="video/mp4" />
+          </video>
+          
+          <div class="arch-vignette"></div>
+
+          <!-- Invitation Content -->
+          <div class="invitation-content">
+            <p class="save-date">SAVE THE DATE</p>
+
+            <h1 class="couple-names">Ryan &amp; Luisa</h1>
+
+            <div class="date-line">02 · 09 · 2027</div>
+
+            <p class="location">GUADAMUR · TOLEDO · ESPAÑA</p>
+
+            <div class="stamps-row" aria-label="Selecciona idioma">
+              <button class="stamp-btn stamp-es" type="button" aria-label="Seleccionar idioma español">
+                <img src="/ingles.png" alt="Español" />
+              </button>
+              <button class="stamp-btn stamp-en" type="button" aria-label="Select english language">
+                <img src="/espanol.png" alt="English" />
+              </button>
+            </div>
+
+            <p class="language-label">Idioma/Language</p>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

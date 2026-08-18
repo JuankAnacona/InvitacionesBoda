@@ -1,0 +1,9 @@
+Voy a crear una inivitaciones a una boda, en una pagina web.
+Tiene que ser resposive,
+tiene que seguir la siguiente secuencia
+
+
+Primeramente, exista imagen del pasaporte, con un sello, en medio (El fondo de la pagina será siempre la imagen seleccionada para el fondo).
+Después, al seleccionar el sello, se ejecuta la animación en canva (se abre pasaporte), para ir a la pagina de seleccionar idioma (Ingles, español), los invitados son de diferentes países.
+Ademas debe de tener una animación bonita y elegante.
+Después al seleccionar el idioma.

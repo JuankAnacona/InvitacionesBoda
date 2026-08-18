@@ -1,0 +1,233 @@
+:root {
+  --ink-red: #6f1a1a;
+  --ink-red-shadow: rgba(75, 12, 12, 0.2);
+  --paper-bg: #efe7dc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Lora', Georgia, serif;
+  background-color: var(--paper-bg);
+  background-image: url('/fondo.png');
+  background-repeat: repeat;
+  background-size: 550px auto;
+  color: var(--ink-red);
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-shell {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 8px;
+}
+
+/* Main Container maintaining exact frame aspect ratio */
+.invitation-container {
+  position: relative;
+  width: min(88vw, 410px);
+  aspect-ratio: 612 / 1150;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+}
+
+/* Lace & Floral Frame Overlays */
+.frame-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.frame-img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+}
+
+.frame-top {
+  top: -0.2%;
+  width: 104.9%; /* 642 / 612 ratio */
+  z-index: 12;
+}
+
+.frame-mid {
+  top: 22.8%;
+  height: 38%;
+  width: 100%;
+  object-fit: fill;
+  z-index: 11;
+}
+
+.frame-bottom {
+  bottom: 0;
+  width: 100%;
+  z-index: 11;
+}
+
+/* Arch Card: Masked video container matching frame interior */
+.arch-card {
+  position: absolute;
+  top: 5.6%;
+  left: 4.6%;
+  right: 7.0%;
+  bottom: 1.0%;
+  border-radius: 50% 50% 0 0 / 22% 22% 0 0;
+  overflow: hidden;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: inset 0 0 25px rgba(60, 40, 20, 0.15);
+}
+
+.arch-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  filter: brightness(0.96) contrast(1.02);
+}
+
+.arch-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, transparent 50%, rgba(60, 40, 20, 0.12) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Invitation Text & Elements Content */
+.invitation-content {
+  position: relative;
+  z-index: 6;
+  width: 100%;
+  height: 100%;
+  padding: 0 5% 3% 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.save-date {
+  margin-top: 11%;
+  margin-bottom: 0;
+  font-family: 'Lora', serif;
+  font-size: clamp(0.75rem, 2.3vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--ink-red);
+  text-transform: uppercase;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.couple-names {
+  margin-top: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Italianno', cursive;
+  font-size: clamp(3.0rem, 8.8vw, 4.3rem);
+  font-weight: 400;
+  line-height: 0.88;
+  color: var(--ink-red);
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 2px var(--ink-red-shadow), 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.date-line {
+  margin-top: 1.8rem;
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 3.6vw, 1.85rem);
+  color: var(--ink-red);
+  letter-spacing: 0.08em;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.location {
+  margin-top: 1.4rem;
+  margin-bottom: 0.8rem;
+  font-family: 'Lora', serif;
+  font-size: clamp(0.5rem, 1.4vw, 0.65rem);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--ink-red);
+  text-transform: uppercase;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.stamps-row {
+  margin-top: auto;
+  margin-bottom: 0.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.stamp-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
+}
+
+.stamp-es {
+  transform: rotate(-3deg);
+}
+
+.stamp-en {
+  transform: rotate(3deg);
+}
+
+.stamp-btn:hover {
+  transform: scale(1.06) rotate(0deg);
+  filter: drop-shadow(0 6px 12px rgba(60, 20, 20, 0.25));
+}
+
+.stamp-btn img {
+  display: block;
+  width: clamp(95px, 28vw, 138px);
+  height: auto;
+  filter: drop-shadow(0 3px 5px rgba(40, 20, 10, 0.16));
+}
+
+.language-label {
+  margin-top: 0.2rem;
+  margin-bottom: 0.6rem;
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: clamp(0.55rem, 1.4vw, 0.7rem);
+  color: var(--ink-red);
+  opacity: 0.85;
+}
+
+@media (max-width: 480px) {
+  .invitation-container {
+    width: min(94vw, 360px);
+  }
+}
