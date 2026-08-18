@@ -12,7 +12,19 @@
   </head>
   <body>
     <div class="page-shell">
-      <main class="invitation-container" aria-label="Invitación de boda">
+
+      <!-- Passport Intro: first interaction, tap the wax seal to open -->
+      <section class="passport-intro" aria-label="Pasaporte de invitación">
+        <div class="passport-intro-inner">
+          <img class="passport-static" src="/passport-closed.png" alt="Pasaporte de invitación Ryan &amp; Luisa" />
+          <video class="passport-video" src="/passport-open.mp4" muted playsinline preload="auto"></video>
+          <button class="passport-seal" type="button" aria-label="Toca el sello para abrir el pasaporte">
+            <span class="passport-seal-pulse"></span>
+          </button>
+        </div>
+      </section>
+
+      <main class="invitation-container is-hidden" aria-label="Invitación de boda">
         
         <!-- Decorative Frame Overlays -->
         <div class="frame-overlay" aria-hidden="true">
