@@ -86,7 +86,7 @@ body {
 }
 
 .passport-static,
-.passport-video {
+.passport-gif {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -95,7 +95,7 @@ body {
   filter: drop-shadow(0 18px 30px rgba(20, 10, 5, 0.35));
 }
 
-.passport-video {
+.passport-gif {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
@@ -105,8 +105,40 @@ body {
   opacity: 0;
 }
 
-.passport-intro-inner.is-playing .passport-video {
+.passport-intro-inner.is-playing .passport-gif {
   opacity: 1;
+}
+
+/* Difuminar los bordes laterales donde sobresalen los hilos */
+.passport-blur-left,
+.passport-blur-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 25%; /* Ancho total del área de difuminado */
+  pointer-events: none;
+  z-index: 5;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: opacity 1s ease;
+}
+
+.passport-blur-left {
+  left: -10%; /* Se extiende un 10% hacia afuera de la caja del GIF */
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+}
+
+.passport-blur-right {
+  right: -10%; /* Se extiende un 10% hacia afuera de la caja del GIF */
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+}
+
+/* Ocultar los difuminados cuando la invitación se está retirando */
+.passport-intro.is-leaving .passport-blur-left,
+.passport-intro.is-leaving .passport-blur-right {
+  opacity: 0;
 }
 
 .passport-seal {
