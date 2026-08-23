@@ -721,7 +721,7 @@ body {
 
 /* PAGE 4: Details & R&L Photo Masks (Idéntico a las imágenes de referencia) */
 .page-4 .page-4-inner {
-  width: min(92vw, 440px);
+  width: min(95vw, 520px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -731,7 +731,7 @@ body {
 .rl-masks-wrapper {
   position: relative;
   width: 100%;
-  max-width: 380px;
+  max-width: 500px;
   aspect-ratio: 380 / 460;
   display: flex;
   justify-content: center;
@@ -742,33 +742,37 @@ body {
 .mask-r {
   position: absolute;
   top: 0;
-  left: 3%;
-  width: 47%;
+  left: 1%;
+  width: 49%;
   height: auto;
+  aspect-ratio: 170 / 295;
+  object-fit: cover;
   z-index: 1;
-  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 400'><style>@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap'); text { font-family: 'Bebas Neue', 'Oswald', sans-serif; }</style><text x='50%' y='355' font-size='410' text-anchor='middle' fill='black'>R</text></svg>");
-  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 400'><style>@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap'); text { font-family: 'Bebas Neue', 'Oswald', sans-serif; }</style><text x='50%' y='355' font-size='410' text-anchor='middle' fill='black'>R</text></svg>");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%27-9%20-9%20153.6%20298%27%3E%3Cpath%20d%3D%27M%200.00%20280.00%20L%200.00%200.00%20L%2065.20%200.00%20Q%2099.20%200.00%20114.80%2015.80%20Q%20130.40%2031.60%20130.40%2064.40%20L%20130.40%2064.40%20L%20130.40%2081.60%20Q%20130.40%20125.20%20101.60%20136.80%20L%20101.60%20136.80%20L%20101.60%20137.60%20Q%20117.60%20142.40%20124.20%20157.20%20Q%20130.80%20172.00%20130.80%20196.80%20L%20130.80%20196.80%20L%20130.80%20246.00%20Q%20130.80%20258.00%20131.60%20265.40%20Q%20132.40%20272.80%20135.60%20280.00%20L%20135.60%20280.00%20L%2090.80%20280.00%20Q%2088.40%20273.20%2087.60%20267.20%20Q%2086.80%20261.20%2086.80%20245.60%20L%2086.80%20245.60%20L%2086.80%20194.40%20Q%2086.80%20175.20%2080.60%20167.60%20Q%2074.40%20160.00%2059.20%20160.00%20L%2059.20%20160.00%20L%2044.00%20160.00%20L%2044.00%20280.00%20L%200.00%20280.00%20M%2044.00%20120.00%20L%2060.00%20120.00%20Q%2073.20%20120.00%2079.80%20113.20%20Q%2086.40%20106.40%2086.40%2090.40%20L%2086.40%2090.40%20L%2086.40%2068.80%20Q%2086.40%2053.60%2081.00%2046.80%20Q%2075.60%2040.00%2064.00%2040.00%20L%2064.00%2040.00%20L%2044.00%2040.00%20L%2044.00%20120.00%27%20fill%3D%27black%27%20stroke%3D%27black%27%20stroke-width%3D%2718%27%20stroke-linejoin%3D%27round%27%2F%3E%3C%2Fsvg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%27-9%20-9%20153.6%20298%27%3E%3Cpath%20d%3D%27M%200.00%20280.00%20L%200.00%200.00%20L%2065.20%200.00%20Q%2099.20%200.00%20114.80%2015.80%20Q%20130.40%2031.60%20130.40%2064.40%20L%20130.40%2064.40%20L%20130.40%2081.60%20Q%20130.40%20125.20%20101.60%20136.80%20L%20101.60%20136.80%20L%20101.60%20137.60%20Q%20117.60%20142.40%20124.20%20157.20%20Q%20130.80%20172.00%20130.80%20196.80%20L%20130.80%20196.80%20L%20130.80%20246.00%20Q%20130.80%20258.00%20131.60%20265.40%20Q%20132.40%20272.80%20135.60%20280.00%20L%20135.60%20280.00%20L%2090.80%20280.00%20Q%2088.40%20273.20%2087.60%20267.20%20Q%2086.80%20261.20%2086.80%20245.60%20L%2086.80%20245.60%20L%2086.80%20194.40%20Q%2086.80%20175.20%2080.60%20167.60%20Q%2074.40%20160.00%2059.20%20160.00%20L%2059.20%20160.00%20L%2044.00%20160.00%20L%2044.00%20280.00%20L%200.00%20280.00%20M%2044.00%20120.00%20L%2060.00%20120.00%20Q%2073.20%20120.00%2079.80%20113.20%20Q%2086.40%20106.40%2086.40%2090.40%20L%2086.40%2090.40%20L%2086.40%2068.80%20Q%2086.40%2053.60%2081.00%2046.80%20Q%2075.60%2040.00%2064.00%2040.00%20L%2064.00%2040.00%20L%2044.00%2040.00%20L%2044.00%20120.00%27%20fill%3D%27black%27%20stroke%3D%27black%27%20stroke-width%3D%2718%27%20stroke-linejoin%3D%27round%27%2F%3E%3C%2Fsvg%3E");
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(12px 12px 20px rgba(0, 0, 0, 0.45));
 }
 
 .mask-l {
   position: absolute;
   top: 24%;
   left: 50%;
-  width: 47%;
+  width: 49%;
   height: auto;
+  aspect-ratio: 170 / 295;
+  object-fit: cover;
   z-index: 2;
-  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 400'><style>@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap'); text { font-family: 'Bebas Neue', 'Oswald', sans-serif; }</style><text x='50%' y='355' font-size='410' text-anchor='middle' fill='black'>L</text></svg>");
-  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 400'><style>@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap'); text { font-family: 'Bebas Neue', 'Oswald', sans-serif; }</style><text x='50%' y='355' font-size='410' text-anchor='middle' fill='black'>L</text></svg>");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%27-9%20-9%20134.4%20298%27%3E%3Cpath%20d%3D%27M%200.00%20280.00%20L%200.00%200.00%20L%2044.00%200.00%20L%2044.00%20240.00%20L%20116.40%20240.00%20L%20116.40%20280.00%20L%200.00%20280.00%27%20fill%3D%27black%27%20stroke%3D%27black%27%20stroke-width%3D%2718%27%20stroke-linejoin%3D%27round%27%2F%3E%3C%2Fsvg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%27-9%20-9%20134.4%20298%27%3E%3Cpath%20d%3D%27M%200.00%20280.00%20L%200.00%200.00%20L%2044.00%200.00%20L%2044.00%20240.00%20L%20116.40%20240.00%20L%20116.40%20280.00%20L%200.00%20280.00%27%20fill%3D%27black%27%2F%3E%3C%2Fsvg%3E");
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(12px 12px 20px rgba(0, 0, 0, 0.45));
 }
 
 .note-container {
