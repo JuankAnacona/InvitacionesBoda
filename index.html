@@ -4,30 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Invitación de boda - Ryan & Luisa</title>
-    <meta name="description" content="Invitación de boda estilo vintage para Ryan & Luisa" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <meta
+      name="description"
+      content="Invitación de boda estilo vintage para Ryan & Luisa"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Italianno&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
   <body>
     <div class="page-shell">
-
       <!-- Passport Intro: first interaction, tap the wax seal to open -->
       <section class="passport-intro" aria-label="Pasaporte de invitación">
         <div class="passport-intro-inner">
-          <img class="passport-static" src="/passport-closed.png" alt="Pasaporte de invitación Ryan &amp; Luisa" />
-          <img class="passport-gif" alt="Pasaporte de invitación Ryan &amp; Luisa" />
+          <img
+            class="passport-static"
+            src="/passport-closed.png"
+            alt="Pasaporte de invitación Ryan &amp; Luisa"
+          />
+          <img
+            class="passport-gif"
+            alt="Pasaporte de invitación Ryan &amp; Luisa"
+          />
           <div class="passport-blur-left" aria-hidden="true"></div>
           <div class="passport-blur-right" aria-hidden="true"></div>
-          <button class="passport-seal" type="button" aria-label="Toca el sello para abrir el pasaporte">
+          <button
+            class="passport-seal"
+            type="button"
+            aria-label="Toca el sello para abrir el pasaporte"
+          >
             <span class="passport-seal-pulse"></span>
           </button>
         </div>
       </section>
 
-      <main class="invitation-container is-hidden" aria-label="Invitación de boda">
-        
+      <main
+        class="invitation-container is-hidden"
+        aria-label="Invitación de boda"
+      >
         <!-- Decorative Frame Overlays -->
         <div class="frame-overlay" aria-hidden="true">
           <img class="frame-img frame-top" src="/arco-top.png" alt="" />
@@ -40,7 +58,7 @@
           <video class="arch-video" autoplay muted loop playsinline>
             <source src="/video_dentro_arcoç.mp4" type="video/mp4" />
           </video>
-          
+
           <div class="arch-vignette"></div>
 
           <!-- Invitation Content -->
@@ -54,10 +72,18 @@
             <p class="location">GUADAMUR · TOLEDO · ESPAÑA</p>
 
             <div class="stamps-row" aria-label="Selecciona idioma">
-              <button class="stamp-btn stamp-es" type="button" aria-label="Seleccionar idioma español">
+              <button
+                class="stamp-btn stamp-es"
+                type="button"
+                aria-label="Seleccionar idioma español"
+              >
                 <img src="/ingles.png" alt="Español" />
               </button>
-              <button class="stamp-btn stamp-en" type="button" aria-label="Select english language">
+              <button
+                class="stamp-btn stamp-en"
+                type="button"
+                aria-label="Select english language"
+              >
                 <img src="/espanol.png" alt="English" />
               </button>
             </div>
@@ -65,9 +91,377 @@
             <p class="language-label">Idioma/Language</p>
           </div>
         </div>
-
       </main>
     </div>
+
+    <main class="wedding-site" id="wedding-site" hidden aria-live="polite">
+      <!-- PAGE 1: Bienvenida, Sobre & Contador -->
+      <section class="canva-page page-1" id="sec-1">
+        <div class="page-inner">
+          <h2
+            class="section-title"
+            data-es="¡NOS CASAMOS!"
+            data-en="WE'RE GETTING MARRIED!"
+          >
+            ¡NOS CASAMOS!
+          </h2>
+
+          <div class="envelope-container">
+            <img
+              class="sobre-top-img"
+              src="/principal/Seccion1/sobre-top.png"
+              alt="Fondo sobre superior"
+            />
+            <div class="photo-frame">
+              <img
+                class="couple-photo-img"
+                src="/principal/Seccion1/foto_pareja.png"
+                alt="Foto de pareja Luisa y Ryan"
+              />
+            </div>
+            <img
+              class="bottom-sobre-img"
+              src="/principal/Seccion1/bottom-sobre.png"
+              alt="Bolsillo de sobre con monograma"
+            />
+          </div>
+
+          <div class="countdown-wrapper">
+            <div class="countdown-digits">
+              <span id="cd-days">374</span>
+              <span class="cd-colon">:</span>
+              <span id="cd-hours">02</span>
+              <span class="cd-colon">:</span>
+              <span id="cd-minutes">56</span>
+              <span class="cd-colon">:</span>
+              <span id="cd-seconds">05</span>
+            </div>
+            <div class="countdown-labels">
+              <span data-es="DÍAS" data-en="DAYS">DÍAS</span>
+              <span data-es="HORAS" data-en="HOURS">HORAS</span>
+              <span data-es="MINUTOS" data-en="MINUTES">MINUTOS</span>
+              <span data-es="SEGUNDOS" data-en="SECONDS">SEGUNDOS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 2: Foto Espejo Antiguo & Calendario Castillo -->
+      <section class="canva-page page-2" id="sec-2">
+        <div class="page-inner page-2-inner">
+          <div class="mirror-card-wrapper">
+            <img
+              class="mirror-photo-card"
+              src="/principal/Seccion2/foto-espajo-antiguo.png"
+              alt="Foto de pareja en marco de espejo antiguo"
+            />
+          </div>
+
+          <div class="calendar-castle-container">
+            <img
+              class="castle-bg-card"
+              src="/principal/Seccion2/castillo.png"
+              alt="Castillo de Guadamur fondo"
+            />
+            <div class="castle-tint-overlay"></div>
+            <img
+              class="calendar-overlay-img"
+              src="/principal/Seccion2/calendario.png"
+              alt="Calendario de Septiembre 2027 marcando el día 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 3: Nuestra Historia (Tal cual imagen de referencia) -->
+      <section
+        class="canva-page page-3"
+        id="sec-3"
+        style="padding: min(10%, 100px) 0px; min-height: 0px"
+      >
+        <div class="story-card-wrapper">
+          <img
+            class="world-map-bg"
+            src="/principal/Seccion3/mapa_mundi.png"
+            alt="Mapa mundial Colombia e Inglaterra"
+          />
+          <img
+            class="torn-paper-top"
+            src="/principal/Seccion3/hoja_rasgada.png"
+            alt="Pergamino rasgado superior"
+          />
+
+          <div class="story-text-container">
+            <h2
+              class="story-title"
+              data-es="Nuestra historia"
+              data-en="Our story"
+            >
+              Nuestra historia
+            </h2>
+            <p
+              data-es="Entre todos los lugares del mundo, entre tantas personas, culturas y caminos posibles, tuvimos la suerte de encontrarnos."
+              data-en="Among all the places in the world, so many people, cultures and possible paths, we were fortunate enough to find each other."
+            >
+              Entre todos los lugares del mundo, entre tantas personas, culturas
+              y caminos posibles, tuvimos la suerte de encontrarnos.
+            </p>
+            <p
+              data-es="Dos historias que nacieron en lugares diferentes y que, sin saberlo, estaban destinadas a cruzarse."
+              data-en="Two stories born in different places that, without knowing it, were meant to cross."
+            >
+              Dos historias que nacieron en lugares diferentes y que, sin
+              saberlo, estaban destinadas a cruzarse.
+            </p>
+            <p
+              data-es="Ahora queremos unir nuestras vidas para siempre y escribir juntos el capítulo más importante de nuestra historia."
+              data-en="Now we want to unite our lives forever and write together the most important chapter of our story."
+            >
+              Ahora queremos unir nuestras vidas para siempre y escribir juntos
+              el capítulo más importante de nuestra historia.
+            </p>
+            <p
+              data-es="Queremos que seas parte de este momento y que nos acompañes a celebrar nuestra unión en matrimonio."
+              data-en="We want you to be part of this moment and celebrate our marriage with us."
+            >
+              Queremos que seas parte de este momento y que nos acompañes a
+              celebrar nuestra unión en matrimonio.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 4: Detalles del Evento -->
+      <section class="canva-page page-4" id="sec-4">
+        <div class="page-inner page-4-inner">
+          <!-- Top: R & L Photo Masks -->
+          <div class="rl-masks-wrapper" aria-label="Fotos Ryan & Luisa">
+            <img
+              class="mask-r"
+              src="/principal/Seccion4/foto-mascara-R.png"
+              alt="Foto inicial R Ryan"
+            />
+            <img
+              class="mask-l"
+              src="/principal/Seccion4/foto-mascara-L.png"
+              alt="Foto inicial L Luisa"
+            />
+          </div>
+
+          <!-- Bottom: Note Container -->
+          <div class="note-container">
+            <img
+              class="note-bg"
+              src="/principal/Seccion4/Note-en-blanco.png"
+              alt="Nota pergamino"
+            />
+            <img
+              class="wax-seal"
+              src="/principal/Seccion4/Sello.png"
+              alt="Sello cera R&L"
+            />
+            <img
+              class="seal-stick"
+              src="/principal/Seccion4/Palo-sello.png"
+              alt="Palo de sello"
+            />
+
+            <div class="note-content">
+              <h2
+                class="note-title"
+                data-es="Detalles importantes sobre la boda"
+                data-en="Important details about the wedding"
+              >
+                Detalles importantes sobre la boda
+              </h2>
+              <p
+                class="note-p1"
+                data-es="Este sera un evento solo para adultos y jovenes."
+                data-en="This will be an adults and young adults only event."
+              >
+                Este sera un evento solo para adultos y jovenes.
+              </p>
+              <p
+                class="note-p2"
+                data-es="Ubicación del evento a continuación."
+                data-en="Event location below."
+              >
+                Ubicación del evento a continuación.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 5: Ubicación del Evento -->
+      <section class="canva-page page-5" id="sec-5">
+        <div class="page-inner">
+          <div class="location-container">
+            <img
+              class="castle-bg-img"
+              src="/principal/Seccion5/castillo.png"
+              alt="Castillo de Guadamur"
+            />
+            <div class="location-overlay-box">
+              <svg class="location-pin-svg" viewBox="0 0 24 24" width="50" height="50">
+                <circle cx="12" cy="9" r="2.5" fill="#ffffff" />
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#5c1919"/>
+              </svg>
+              <h2 class="location-title">
+                Castillo de<br><span>guadamur</span>
+              </h2>
+              <p class="location-address">
+                Guadamur, Toledo,<br>España
+              </p>
+            </div>
+            <a
+              class="location-arrow-link"
+              href="https://maps.google.com/?q=Castillo+de+Guadamur"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ver ubicación en Google Maps"
+            >
+              <img
+                class="location-arrow-img"
+                src="/principal/Seccion5/flecha-ver-ubicacion.png"
+                alt="Ver ubicación"
+              />
+              <svg class="location-arrow-svg" viewBox="0 0 292 304">
+                <path
+                  id="arrowPath"
+                  d="M 90,110 Q 165,240 250,274"
+                  fill="none"
+                  stroke="transparent"
+                />
+                <text class="arrow-text-content">
+                  <textPath
+                    href="#arrowPath"
+                    xlink:href="#arrowPath"
+                    startOffset="50%"
+                    text-anchor="middle"
+                    data-es="VER UBICACIÓN"
+                    data-en="VIEW LOCATION"
+                  >VER UBICACIÓN</textPath>
+                </text>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 6: Confirmación de Asistencia (RSVP) -->
+      <section class="canva-page page-6" id="sec-6">
+        <div class="page-inner">
+          <div class="letter-container">
+            <img
+              class="letter-bg"
+              src="/principal/Seccion6/carta-castillo-enblanco.png"
+              alt="Carta castillo"
+            />
+
+            <div class="letter-content">
+              <h2
+                class="rsvp-title"
+                data-es="Confírmanos tu asistencia"
+                data-en="Confirm your attendance"
+              >
+                Confírmanos tu asistencia
+              </h2>
+              
+              <img
+                class="letter-top-decor"
+                src="/principal/Seccion6/carta-top.png"
+                alt=""
+              />
+
+              <p
+                class="rsvp-p1"
+                data-es="Estamos muy emocionados por compartir contigo un día tan especial como lo es nuestra boda."
+                data-en="We are very excited to share such a special day as our wedding with you."
+              >
+                Estamos muy emocionados por compartir contigo un día tan
+                especial como lo es nuestra boda.
+              </p>
+
+              <img
+                class="letter-divider"
+                src="/principal/Seccion6/separador-carta.png"
+                alt=""
+              />
+
+              <p
+                class="rsvp-p2"
+                data-es="Por favor, confirma tu asistencia antes del &lt;span class='rsvp-highlight'&gt;1ero de octubre de 2026&lt;/span&gt;.&lt;br&gt;En caso de no obtener una respuesta antes de la fecha límite, entenderemos que no podrás acompañarnos."
+                data-en="Please confirm your attendance before &lt;span class='rsvp-highlight'&gt;October 1st, 2026&lt;/span&gt;.&lt;br&gt;If we do not receive a response by the deadline, we will understand that you cannot join us."
+              >
+                Por favor, confirma tu asistencia antes del <span class="rsvp-highlight">1ero de octubre de 2026</span>.<br>En caso de no obtener una respuesta antes de la fecha límite, entenderemos que no podrás acompañarnos.
+              </p>
+
+              <div class="rsvp-btn-container">
+                <button
+                  class="rsvp-btn"
+                  type="button"
+                  data-es="Confirma aquí"
+                  data-en="Confirm here"
+                >
+                  Confirma aquí
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 7: Agradecimiento Final -->
+      <section class="canva-page page-7" id="sec-7">
+        <div class="page-inner">
+          <div class="thanks-container">
+            <img
+              class="thanks-bg"
+              src="/principal/Seccion7/carta-enblanco.png"
+              alt="Carta agradecimiento"
+            />
+            <img
+              class="thanks-seal"
+              src="/principal/Seccion4/Sello.png"
+              alt="Sello R&L"
+            />
+
+            <div class="thanks-content">
+              <h2
+                class="thanks-title"
+                data-es="¡ Muchas gracias por tu atención !"
+                data-en="Thank you very much for your attention !"
+              >
+                ¡ Muchas gracias por tu atención !
+              </h2>
+
+              <img
+                class="thanks-divider"
+                src="/principal/Seccion6/carta-top.png"
+                alt=""
+              />
+
+              <p
+                class="thanks-text"
+                data-es="Hemos recibido tus respuestas correctamente. Tu confirmación nos ayuda enormemente a organizar los preparativos y la logística del alojamiento.<br><br>La invitación formal será enviada próximamente."
+                data-en="We have received your responses correctly. Your confirmation helps us enormously to organize the preparations and accommodation logistics.<br><br>The formal invitation will be sent soon."
+              >
+                Hemos recibido tus respuestas correctamente. Tu confirmación nos
+                ayuda enormemente a organizar los preparativos y la logística
+                del alojamiento.<br><br>La invitación formal será enviada próximamente.
+              </p>
+
+              <img
+                class="instax-photo"
+                src="/principal/Seccion7/foto-instax.png"
+                alt="Foto Instax"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <script type="module" src="/src/main.js"></script>
   </body>

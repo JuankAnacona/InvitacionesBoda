@@ -7,6 +7,39 @@ const passportInner = document.querySelector('.passport-intro-inner');
 const passportSeal = document.querySelector('.passport-seal');
 const passportGif = document.querySelector('.passport-gif');
 const invitationContainer = document.querySelector('.invitation-container');
+const weddingSite = document.querySelector('.wedding-site');
+
+const showWeddingSite = (language) => {
+  if (!weddingSite) return;
+
+  document.documentElement.lang = language;
+  document.querySelectorAll('[data-es][data-en]').forEach((element) => {
+    element.innerHTML = element.dataset[language];
+  });
+
+  const pageShell = document.querySelector('.page-shell');
+  if (pageShell) {
+    pageShell.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    pageShell.style.opacity = '0';
+    pageShell.style.transform = 'scale(0.96)';
+
+    setTimeout(() => {
+      pageShell.style.display = 'none';
+      weddingSite.hidden = false;
+      requestAnimationFrame(() => {
+        weddingSite.classList.add('is-visible');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      });
+    }, 500);
+  } else {
+    weddingSite.hidden = false;
+    requestAnimationFrame(() => {
+      weddingSite.classList.add('is-visible');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+  }
+};
+
 
 if (passportSeal && passportInner && passportGif && passportIntro && invitationContainer) {
   let hasOpened = false;
@@ -86,6 +119,7 @@ if (stampEs) {
       { duration: 250, easing: 'ease-out' }
     );
     if (languageLabel) languageLabel.textContent = 'Idioma/Language';
+    showWeddingSite('es');
   });
 }
 
@@ -100,5 +134,57 @@ if (stampEn) {
       { duration: 250, easing: 'ease-out' }
     );
     if (languageLabel) languageLabel.textContent = 'Language/Idioma';
+    showWeddingSite('en');
   });
 }
+
+// El botón de confirmar asistencia llevará a otra página más adelante
+const rsvpButton = document.querySelector('.rsvp-btn, .rsvp-button');
+if (rsvpButton) {
+  rsvpButton.addEventListener('click', () => {
+    // Lógica de navegación pendiente de definir
+  });
+}
+
+const initCountdown = () => {
+  const targetDate = new Date('2027-09-02T00:00:00').getTime();
+
+  const updateCountdown = () => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+      const elDays = document.getElementById('cd-days');
+      const elHours = document.getElementById('cd-hours');
+      const elMinutes = document.getElementById('cd-minutes');
+      const elSeconds = document.getElementById('cd-seconds');
+      if (elDays) elDays.textContent = '000';
+      if (elHours) elHours.textContent = '00';
+      if (elMinutes) elMinutes.textContent = '00';
+      if (elSeconds) elSeconds.textContent = '00';
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    const elDays = document.getElementById('cd-days');
+    const elHours = document.getElementById('cd-hours');
+    const elMinutes = document.getElementById('cd-minutes');
+    const elSeconds = document.getElementById('cd-seconds');
+
+    if (elDays) elDays.textContent = String(days).padStart(3, '0');
+    if (elHours) elHours.textContent = String(hours).padStart(2, '0');
+    if (elMinutes) elMinutes.textContent = String(minutes).padStart(2, '0');
+    if (elSeconds) elSeconds.textContent = String(seconds).padStart(2, '0');
+  };
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+};
+
+initCountdown();
+
+
