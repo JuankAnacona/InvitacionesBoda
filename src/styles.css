@@ -271,6 +271,7 @@ body {
   width: 100%;
   height: 100%;
   padding: 35% 5% 30% 5%;
+  gap: 35px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -561,6 +562,14 @@ body {
 }
 
 /* PAGE 2: Foto Espejo & Calendario Castillo (Idéntico a la imagen de referencia) */
+.page-2 {
+  background-image: url('/fondo.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 30px 30px 0px 30px !important;
+}
+
 .page-2 .page-2-inner {
   width: min(90vw, 440px);
   display: flex;
@@ -589,9 +598,8 @@ body {
 
 .calendar-castle-container {
   position: relative;
-  width: 100%;
+  width: 100vw;
   aspect-ratio: 1080 / 1440;
-  border-radius: 8px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -624,19 +632,40 @@ body {
   filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.6));
 }
 
-/* PAGE 3: Story & Map (Idéntico a la imagen de referencia) */
-.page-3 .page-3-inner {
-  width: min(94vw, 860px);
+.calendar-date {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: clamp(1.4rem, 4vw, 1.95rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.18em;
+  text-align: center;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  margin-top: 5px;
+  position: absolute;
+  z-index: 100;
+  bottom: 25%;
+}
+
+/* PAGE 3: Story & Map */
+.page-3 {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: min(15vw, 60px) 16px;
+  overflow: hidden;
 }
 
-.story-card-wrapper {
+.page-3 .page-3-inner {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1536 / 892;
-  overflow: hidden;
+  width: min(92vw, 440px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .world-map-bg {
@@ -645,56 +674,49 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 45% center; /* Centers between Colombia and England */
   z-index: 1;
-}
-
-.torn-paper-top {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 2;
+  opacity: 0.2; /* 20% opacity */
   pointer-events: none;
 }
 
-
 .story-text-container {
-  position: absolute;
-  top: 5.5%;
-  left: 3.5%;
-  width: 48%;
-  height: 88%;
+  position: relative;
   z-index: 3;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  text-align: left;
-  padding-right: 1.5%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   box-sizing: border-box;
 }
 
 .story-title {
   font-family: 'Snell Roundhand', cursive;
-  font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+  font-size: clamp(2.5rem, 8.5vw, 4.5rem);
   font-weight: 200;
-  color: #6f1a1a;
-  margin: 0 0 3% 0;
-  line-height: 0.95;
-  letter-spacing: 0.01em;
-  text-align: left;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+  color: #ffffff; /* White letters */
+  margin: 0 auto 25px auto;
+  line-height: 1.0;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
+  text-align: center;
 }
 
 .story-text-container p {
   font-family: 'Snell Roundhand', cursive;
-  font-size: clamp(0.92rem, 2.2vw, 1.65rem);
+  font-size: clamp(1.1rem, 2.7vw, 1.85rem);
   font-weight: 200;
-  color: #6f1a1a;
-  line-height: 1.25;
-  margin: 0 0 0 0;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+  color: #ffffff; /* White letters */
+  line-height: 1.35;
+  margin: 0 auto 25px auto;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
+  text-align: center;
+  max-width: 95%;
+}
+
+.story-text-container p:last-child {
+  margin-bottom: 0;
 }
 
 /* PAGE 4: Details & R&L Photo Masks (Idéntico a las imágenes de referencia) */
