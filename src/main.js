@@ -266,6 +266,28 @@ if (stampEn) {
   });
 }
 
+const rsvpData = {
+  name: '',
+  attending: '',
+  needsAccommodation: '',
+  peopleCount: '',
+  shareWith: ''
+};
+
+const sendRSVPData = (data) => {
+  const url = 'https://script.google.com/macros/s/AKfycbyg_-SjVL10h5ep5QgFISco1N3IOLpkYmBmCesZ-JsHb8CoTY6BXwliS5j_fdB7M0FJ/exec';
+  fetch(url, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(() => console.log('RSVP enviado correctamente'))
+  .catch(err => console.error('Error al enviar RSVP:', err));
+};
+
 // El botón de confirmar asistencia llevará a la selección de RSVP con transición suave
 const rsvpButton = document.querySelector('.rsvp-btn, .rsvp-button');
 const rsvpSelectionSite = document.getElementById('rsvp-selection-site');
@@ -311,6 +333,7 @@ if (rsvpOptionButtons.length > 0) {
           rsvpSelectionSite.classList.remove('is-visible');
           
           if (index === 0) {
+            rsvpData.attending = 'Sí';
             // "Sí, ahí estaré" -> Ir a la página de Alojamiento
             if (rsvpAccommodationSite) {
               rsvpAccommodationSite.style.opacity = '0';
@@ -324,6 +347,12 @@ if (rsvpOptionButtons.length > 0) {
               });
             }
           } else {
+            rsvpData.attending = index === 1 ? 'No' : 'Aun no lo se';
+            rsvpData.needsAccommodation = 'No';
+            rsvpData.peopleCount = '';
+            rsvpData.shareWith = '';
+            sendRSVPData(rsvpData);
+            
             // "No será posible" o "Aun no lo se" -> Ir a Agradecimiento (Sección 7)
             if (weddingSite) {
               weddingSite.style.opacity = '0';
@@ -363,6 +392,7 @@ if (accommodationOptionButtons.length > 0) {
           rsvpAccommodationSite.classList.remove('is-visible');
           
           if (index === 0) {
+            rsvpData.needsAccommodation = 'Sí';
             // "Sí, lo necesitaré" -> Ir a la página de Detalles (Preguntas)
             if (rsvpDetailsSite) {
               rsvpDetailsSite.style.opacity = '0';
@@ -376,6 +406,11 @@ if (accommodationOptionButtons.length > 0) {
               });
             }
           } else {
+            rsvpData.needsAccommodation = 'No';
+            rsvpData.peopleCount = '';
+            rsvpData.shareWith = '';
+            sendRSVPData(rsvpData);
+            
             // "No / Aun no lo se" -> Ir a Agradecimiento (Sección 7)
             if (weddingSite) {
               weddingSite.style.opacity = '0';
@@ -401,7 +436,9 @@ if (accommodationOptionButtons.length > 0) {
 
 // Al hacer click en el botón de Confirmar de la página de Detalles -> Ir a Agradecimiento (Sección 7)
 const rsvpSubmitBtn = document.querySelector('#rsvp-details-site .rsvp-submit-btn');
-const guestsInput = document.querySelector('#sec-rsvp-details .rsvp-text-input');
+const rsvpInputs = document.querySelectorAll('#sec-rsvp-details .rsvp-text-input');
+const guestsInput = rsvpInputs[0];
+const shareInput = rsvpInputs[1];
 
 if (guestsInput) {
   guestsInput.addEventListener('input', () => {
@@ -429,7 +466,14 @@ if (rsvpSubmitBtn) {
         
         return; // Cancelar confirmación
       }
+      rsvpData.peopleCount = val;
     }
+    
+    if (shareInput) {
+      rsvpData.shareWith = shareInput.value.trim();
+    }
+    
+    sendRSVPData(rsvpData);
 
     if (rsvpDetailsSite) {
       rsvpDetailsSite.style.transition = 'opacity 0.5s ease-in-out';
@@ -510,6 +554,7 @@ const initPersonalization = () => {
   if (rawName) {
     // Reemplaza guiones bajos por espacios y decodifica
     const guestName = decodeURIComponent(rawName).replace(/_/g, ' ');
+    rsvpData.name = guestName;
     if (guestElement) {
       guestElement.textContent = guestName;
       guestElement.style.display = '';
