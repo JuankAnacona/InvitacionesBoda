@@ -975,6 +975,10 @@ body {
 }
 
 /* PAGE 6: RSVP */
+.page-6 .page-inner {
+  width: min(95vw, 500px);
+}
+
 .letter-container {
   position: relative;
   width: 100%;
@@ -1026,7 +1030,7 @@ body {
   line-height: 1.5;
   color: #000000;
   margin: 0;
-  max-width: 85%;
+  max-width: 90%;
   text-shadow: 0 0.5px 1px rgba(255, 255, 255, 0.5);
 }
 
@@ -1036,7 +1040,7 @@ body {
   line-height: 1.5;
   color: #000000;
   margin: 0;
-  max-width: 85%;
+  max-width: 90%;
   text-shadow: 0 0.5px 1px rgba(255, 255, 255, 0.5);
 }
 
@@ -1098,6 +1102,10 @@ body {
 }
 
 /* PAGE 7: Thanks */
+.page-7 .page-inner {
+  width: min(95vw, 500px);
+}
+
 .thanks-container {
   position: relative;
   width: 100%;
@@ -1134,7 +1142,7 @@ body {
 .thanks-content {
   position: absolute;
   padding-top: 25px;
-  inset: 15% 10% 8% 10%;
+  inset: 14% 8% 8% 8%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
