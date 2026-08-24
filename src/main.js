@@ -259,11 +259,69 @@ if (stampEn) {
   });
 }
 
-// El botón de confirmar asistencia llevará a otra página más adelante
+// El botón de confirmar asistencia llevará a la selección de RSVP con transición suave
 const rsvpButton = document.querySelector('.rsvp-btn, .rsvp-button');
-if (rsvpButton) {
+const rsvpSelectionSite = document.getElementById('rsvp-selection-site');
+if (rsvpButton && rsvpSelectionSite && weddingSite) {
   rsvpButton.addEventListener('click', () => {
-    // Lógica de navegación pendiente de definir
+    // Transición de salida para weddingSite
+    weddingSite.style.transition = 'opacity 0.5s ease-in-out';
+    weddingSite.style.opacity = '0';
+    
+    setTimeout(() => {
+      weddingSite.hidden = true;
+      weddingSite.classList.remove('is-visible');
+      
+      // Preparar rsvpSelectionSite invisible
+      rsvpSelectionSite.style.opacity = '0';
+      rsvpSelectionSite.hidden = false;
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      
+      // Transición de entrada para rsvpSelectionSite
+      requestAnimationFrame(() => {
+        rsvpSelectionSite.style.transition = 'opacity 0.6s ease-in-out';
+        rsvpSelectionSite.style.opacity = '1';
+        rsvpSelectionSite.classList.add('is-visible');
+      });
+    }, 500);
+  });
+}
+
+// Al hacer click en cualquier opción de RSVP, regresar al sitio de boda y hacer scroll a la confirmación (gracias) con transición suave
+const rsvpOptionButtons = document.querySelectorAll('.rsvp-option-btn');
+if (rsvpOptionButtons.length > 0) {
+  rsvpOptionButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (rsvpSelectionSite) {
+        // Transición de salida para rsvpSelectionSite
+        rsvpSelectionSite.style.transition = 'opacity 0.5s ease-in-out';
+        rsvpSelectionSite.style.opacity = '0';
+        
+        setTimeout(() => {
+          rsvpSelectionSite.hidden = true;
+          rsvpSelectionSite.classList.remove('is-visible');
+          
+          if (weddingSite) {
+            // Preparar weddingSite invisible
+            weddingSite.style.opacity = '0';
+            weddingSite.hidden = false;
+            
+            // Posicionar instantáneamente en la sección 7 de agradecimiento
+            const sec7 = document.getElementById('sec-7');
+            if (sec7) {
+              sec7.scrollIntoView({ behavior: 'instant', block: 'center' });
+            }
+            
+            // Transición de entrada para weddingSite
+            requestAnimationFrame(() => {
+              weddingSite.style.transition = 'opacity 0.6s ease-in-out';
+              weddingSite.style.opacity = '1';
+              weddingSite.classList.add('is-visible');
+            });
+          }
+        }, 500);
+      }
+    });
   });
 }
 

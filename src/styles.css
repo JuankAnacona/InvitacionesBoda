@@ -1010,7 +1010,7 @@ body {
 
 /* PAGE 6: RSVP */
 .page-6 .page-inner {
-  width: min(95vw, 500px);
+  width: min(95vw, 560px);
 }
 
 .letter-container {
@@ -1034,7 +1034,7 @@ body {
   max-width: 250px;
   height: auto;
   pointer-events: none;
-  margin: 1% auto 3% auto;
+  margin: 1% auto 0% auto;
 }
 
 .letter-divider {
@@ -1104,19 +1104,18 @@ body {
 
 
 .rsvp-btn {
-  background: url('/principal/fondo-inputs.png') no-repeat center / contain;
-  width: clamp(155px, 42vw, 205px);
+  background: url('/principal/input-background.png') no-repeat center / contain;
+  width: clamp(130px, 35vw, 170px);
   aspect-ratio: 136 / 67;
   border: none;
   outline: none;
   font-family: 'Snell Roundhand', cursive;
-  font-size: clamp(0.4rem, 3.8vw, 1.95rem);
+  font-size: clamp(0.4rem, 3.2vw, 1.65rem);
   font-weight: 200;
   font-style: italic;
   color: #6f1a1a;
   text-align: center;
-  padding-left: 12%;
-  padding-right: 6%;
+  padding: 0 0 1% 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1176,7 +1175,7 @@ body {
 .thanks-content {
   position: absolute;
   padding-top: 25px;
-  inset: 14% 8% 8% 8%;
+  inset: 14% 8% 8% 5%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -1293,4 +1292,140 @@ body {
   opacity: 0.85;
   line-height: 1.5;
   max-width: 90%;
+}
+
+/* ==========================================================================
+   RSVP SELECTION PAGE
+   ========================================================================== */
+
+.page-rsvp-select .page-inner {
+  width: min(95vw, 560px);
+}
+
+.rsvp-select-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rsvp-select-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4));
+}
+
+.rsvp-select-content {
+  position: absolute;
+  inset: 12% 8% 8% 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  z-index: 3;
+  box-sizing: border-box;
+}
+
+.rsvp-select-title {
+  font-family: 'Snell Roundhand', cursive;
+  font-size: clamp(1.3rem, 5.5vw, 3.8rem);
+  font-weight: 200;
+  color: #6f1a1a;
+  margin: 0;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.rsvp-select-guest {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: clamp(0.75rem, 2.0vw, 1.10rem);
+  color: #000000;
+  margin: 2% 0 0 0;
+  font-weight: bold;
+}
+
+.rsvp-select-question {
+  font-family: 'Snell Roundhand', cursive;
+  font-size: clamp(1.1rem, 4.5vw, 2.8rem);
+  font-weight: 200;
+  color: #6f1a1a;
+  margin: 1% 0 3% 0;
+  line-height: 1.1;
+  max-width: 90%;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.rsvp-options-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-right: 35%;
+}
+
+.rsvp-option-btn {
+  position: relative;
+  background: url('/principal/input-background.png') no-repeat center / contain;
+  width: clamp(170px, 39vw, 230px);
+  aspect-ratio: 136 / 67;
+  border: none;
+  outline: none;
+  font-family: 'Snell Roundhand', cursive;
+  font-size: clamp(0.6rem, 3.2vw, 1.6rem);
+  font-weight: 200;
+  font-style: italic;
+  color: #6f1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
+  box-sizing: border-box;
+}
+
+.rsvp-option-btn:hover {
+  transform: scale(1.06);
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
+}
+
+.rsvp-option-btn:active {
+  transform: scale(0.97);
+}
+
+.rsvp-option-seal {
+  position: absolute;
+  left: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(24px, 5.5vw, 32px);
+  height: auto;
+}
+
+.letter-bottom-decor {
+  display: block;
+  width: 60%;
+  max-width: 250px;
+  height: auto;
+  pointer-events: none;
+  margin: 3% auto 0 auto;
+  transform: scaleY(-1);
+}
+
+.rsvp-select-instax {
+  position: absolute;
+  bottom: 10%;
+  right: 0%;
+  width: 48%;
+  height: auto;
+  transform: rotate(3deg);
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.5));
+  z-index: 5;
+  transition: transform 0.3s ease;
+}
+
+.rsvp-select-instax:hover {
+  transform: rotate(-2deg) scale(1.02);
 }

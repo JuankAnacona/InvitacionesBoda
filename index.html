@@ -18,7 +18,13 @@
   </head>
   <body class="scroll-locked">
     <!-- Preloader Overlay -->
-    <div id="preloader-overlay" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div
+      id="preloader-overlay"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+    >
       <div class="preloader-container">
         <h2 class="preloader-title">Ryan & Luisa</h2>
         <div class="preloader-progress-wrapper">
@@ -26,7 +32,7 @@
         </div>
         <div class="preloader-percentage" id="preloader-percentage">0%</div>
         <div class="preloader-bilingual-text">
-          Cargando invitación...<br>
+          Cargando invitación...<br />
           Loading invitation...
         </div>
       </div>
@@ -477,6 +483,76 @@
                 alt="Foto Instax"
               />
             </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <main
+      class="wedding-site"
+      id="rsvp-selection-site"
+      hidden
+      aria-live="polite"
+    >
+      <!-- RSVP SELECTION PAGE -->
+      <section class="canva-page page-rsvp-select" id="sec-rsvp-select">
+        <div class="page-inner">
+          <div class="rsvp-select-container">
+            <img
+              class="rsvp-select-bg"
+              src="/principal/Seccion7/carta-enblanco.png"
+              alt="Carta RSVP"
+            />
+
+            <div class="rsvp-select-content">
+              <h2
+                class="rsvp-select-title"
+                data-es="Nombre y apellidos:"
+                data-en="Full name:"
+              >
+                Nombre y apellidos:
+              </h2>
+
+              <p class="rsvp-select-guest">Blablabla y esposo</p>
+
+              <img
+                class="letter-top-decor"
+                src="/principal/Seccion6/carta-top.png"
+                alt=""
+              />
+
+              <p
+                class="rsvp-select-question"
+                data-es="¿Tienen previsto acompañarnos el 2 de septiembre de 2027?"
+                data-en="Do you plan to join us on September 2nd, 2027?"
+              >
+                ¿Tienen previsto acompañarnos el 2 de septiembre de 2027?
+              </p>
+
+              <div class="rsvp-options-wrapper">
+                <button class="rsvp-option-btn" type="button">
+                  <span data-es="Sí, ahí estaré" data-en="Yes, I'll be there"
+                    >Sí, ahí estaré</span
+                  >
+                </button>
+                <button class="rsvp-option-btn" type="button">
+                  <span data-es="No será posible" data-en="It won't be possible"
+                    >No será posible</span
+                  >
+                </button>
+                <button class="rsvp-option-btn" type="button">
+                  <span data-es="Aun no lo se" data-en="I don't know yet"
+                    >Aun no lo se</span
+                  >
+                </button>
+              </div>
+            </div>
+
+            <img
+              class="rsvp-select-instax"
+              src="/principal/Confirmacion/foto-confirmacion.png"
+              alt="Foto Instax"
+            />
           </div>
         </div>
       </section>
