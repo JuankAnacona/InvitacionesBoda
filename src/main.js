@@ -122,9 +122,6 @@ const showWeddingSite = (language) => {
     element.innerHTML = element.dataset[language];
   });
 
-  // Unlock body scroll
-  document.body.classList.remove('scroll-locked');
-
   const pageShell = document.querySelector('.page-shell');
   if (pageShell) {
     pageShell.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -134,6 +131,11 @@ const showWeddingSite = (language) => {
     setTimeout(() => {
       pageShell.style.display = 'none';
       weddingSite.hidden = false;
+
+      // Unlock scroll after page shell is hidden and wedding site is shown
+      document.documentElement.classList.remove('scroll-locked');
+      document.body.classList.remove('scroll-locked');
+
       requestAnimationFrame(() => {
         weddingSite.classList.add('is-visible');
         window.scrollTo({ top: 0, behavior: 'instant' });
@@ -141,6 +143,11 @@ const showWeddingSite = (language) => {
     }, 500);
   } else {
     weddingSite.hidden = false;
+
+    // Unlock scroll
+    document.documentElement.classList.remove('scroll-locked');
+    document.body.classList.remove('scroll-locked');
+
     requestAnimationFrame(() => {
       weddingSite.classList.add('is-visible');
       window.scrollTo({ top: 0, behavior: 'instant' });
