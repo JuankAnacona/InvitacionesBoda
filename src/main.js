@@ -500,4 +500,43 @@ const initCountdown = () => {
 
 initCountdown();
 
+const initPersonalization = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const rawName = urlParams.get('name') || urlParams.get('invitado');
+  const guestTitle = document.querySelector('#sec-rsvp-select .rsvp-select-title');
+  const guestElement = document.querySelector('#sec-rsvp-select .rsvp-select-guest');
+  const thanksTitle = document.querySelector('.thanks-title');
+
+  if (rawName) {
+    // Reemplaza guiones bajos por espacios y decodifica
+    const guestName = decodeURIComponent(rawName).replace(/_/g, ' ');
+    if (guestElement) {
+      guestElement.textContent = guestName;
+      guestElement.style.display = '';
+    }
+    if (guestTitle) {
+      guestTitle.style.display = '';
+    }
+
+    // Personalizar título de agradecimiento con soporte bilingüe
+    if (thanksTitle) {
+      thanksTitle.dataset.es = `¡ Muchas gracias por tu atención, ${guestName} !`;
+      thanksTitle.dataset.en = `Thank you very much for your attention, ${guestName} !`;
+      
+      const currentLang = document.documentElement.lang || 'es';
+      thanksTitle.innerHTML = thanksTitle.dataset[currentLang] || thanksTitle.dataset.es;
+    }
+  } else {
+    // Ocultar placeholders si no hay parámetro en la URL
+    if (guestElement) {
+      guestElement.style.display = 'none';
+    }
+    if (guestTitle) {
+      guestTitle.style.display = 'none';
+    }
+  }
+};
+
+initPersonalization();
+
 
