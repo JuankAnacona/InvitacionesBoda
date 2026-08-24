@@ -122,6 +122,11 @@ const showWeddingSite = (language) => {
     element.innerHTML = element.dataset[language];
   });
 
+  document.querySelectorAll('[data-placeholder-es][data-placeholder-en]').forEach((element) => {
+    const key = 'placeholder' + language.charAt(0).toUpperCase() + language.slice(1);
+    element.placeholder = element.dataset[key];
+  });
+
   const pageShell = document.querySelector('.page-shell');
   if (pageShell) {
     pageShell.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -342,10 +347,12 @@ if (rsvpOptionButtons.length > 0) {
   });
 }
 
-// Al hacer click en las opciones de la página de Alojamiento -> Ir a Agradecimiento (Sección 7)
+// Al hacer click en las opciones de la página de Alojamiento
 const accommodationOptionButtons = document.querySelectorAll('#rsvp-accommodation-site .rsvp-option-btn');
+const rsvpDetailsSite = document.getElementById('rsvp-details-site');
+
 if (accommodationOptionButtons.length > 0) {
-  accommodationOptionButtons.forEach(btn => {
+  accommodationOptionButtons.forEach((btn, index) => {
     btn.addEventListener('click', () => {
       if (rsvpAccommodationSite) {
         rsvpAccommodationSite.style.transition = 'opacity 0.5s ease-in-out';
@@ -355,24 +362,100 @@ if (accommodationOptionButtons.length > 0) {
           rsvpAccommodationSite.hidden = true;
           rsvpAccommodationSite.classList.remove('is-visible');
           
-          if (weddingSite) {
-            weddingSite.style.opacity = '0';
-            weddingSite.hidden = false;
-            
-            const sec7 = document.getElementById('sec-7');
-            if (sec7) {
-              sec7.scrollIntoView({ behavior: 'instant', block: 'center' });
+          if (index === 0) {
+            // "Sí, lo necesitaré" -> Ir a la página de Detalles (Preguntas)
+            if (rsvpDetailsSite) {
+              rsvpDetailsSite.style.opacity = '0';
+              rsvpDetailsSite.hidden = false;
+              window.scrollTo({ top: 0, behavior: 'instant' });
+              
+              requestAnimationFrame(() => {
+                rsvpDetailsSite.style.transition = 'opacity 0.6s ease-in-out';
+                rsvpDetailsSite.style.opacity = '1';
+                rsvpDetailsSite.classList.add('is-visible');
+              });
             }
-            
-            requestAnimationFrame(() => {
-              weddingSite.style.transition = 'opacity 0.6s ease-in-out';
-              weddingSite.style.opacity = '1';
-              weddingSite.classList.add('is-visible');
-            });
+          } else {
+            // "No / Aun no lo se" -> Ir a Agradecimiento (Sección 7)
+            if (weddingSite) {
+              weddingSite.style.opacity = '0';
+              weddingSite.hidden = false;
+              
+              const sec7 = document.getElementById('sec-7');
+              if (sec7) {
+                sec7.scrollIntoView({ behavior: 'instant', block: 'center' });
+              }
+              
+              requestAnimationFrame(() => {
+                weddingSite.style.transition = 'opacity 0.6s ease-in-out';
+                weddingSite.style.opacity = '1';
+                weddingSite.classList.add('is-visible');
+              });
+            }
           }
         }, 500);
       }
     });
+  });
+}
+
+// Al hacer click en el botón de Confirmar de la página de Detalles -> Ir a Agradecimiento (Sección 7)
+const rsvpSubmitBtn = document.querySelector('#rsvp-details-site .rsvp-submit-btn');
+const guestsInput = document.querySelector('#sec-rsvp-details .rsvp-text-input');
+
+if (guestsInput) {
+  guestsInput.addEventListener('input', () => {
+    guestsInput.classList.remove('rsvp-input-error');
+  });
+}
+
+if (rsvpSubmitBtn) {
+  rsvpSubmitBtn.addEventListener('click', () => {
+    if (guestsInput) {
+      const val = guestsInput.value.trim();
+      if (!val) {
+        guestsInput.classList.add('rsvp-input-error');
+        guestsInput.focus();
+        
+        // Efecto visual de sacudida (shake)
+        guestsInput.animate([
+          { transform: 'translateX(0)' },
+          { transform: 'translateX(-6px)' },
+          { transform: 'translateX(6px)' },
+          { transform: 'translateX(-4px)' },
+          { transform: 'translateX(4px)' },
+          { transform: 'translateX(0)' }
+        ], { duration: 300, easing: 'ease-in-out' });
+        
+        return; // Cancelar confirmación
+      }
+    }
+
+    if (rsvpDetailsSite) {
+      rsvpDetailsSite.style.transition = 'opacity 0.5s ease-in-out';
+      rsvpDetailsSite.style.opacity = '0';
+      
+      setTimeout(() => {
+        rsvpDetailsSite.hidden = true;
+        rsvpDetailsSite.classList.remove('is-visible');
+        
+        if (weddingSite) {
+          weddingSite.style.opacity = '0';
+          weddingSite.hidden = false;
+          
+          const sec7 = document.getElementById('sec-7');
+          if (sec7) {
+            sec7.scrollIntoView({ behavior: 'instant', block: 'center' });
+          }
+          
+          requestAnimationFrame(() => {
+            weddingSite.style.transition = 'opacity 0.6s ease-in-out';
+            weddingSite.style.opacity = '1';
+            weddingSite.classList.add('is-visible');
+          });
+        }
+      }, 500);
+    }
   });
 }
 

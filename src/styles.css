@@ -1486,3 +1486,61 @@ body {
 #sec-rsvp-accommodation .rsvp-select-title {
   margin: 20px 0px 0px;
 }
+
+/* Details page specific styles */
+.rsvp-details-content {
+  inset: 10% 8% 8% 6%;
+  width: 70%;
+  justify-self: center;
+  align-self: center;
+}
+
+.rsvp-details-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.rsvp-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.rsvp-field-label {
+  font-size: clamp(1.0rem, 4vw, 1.7rem) !important;
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+
+.rsvp-text-input {
+  background: url('/principal/input-background.png') no-repeat center / 100% 100%;
+  width: clamp(220px, 55vw, 320px);
+  height: clamp(42px, 10vw, 55px);
+  border: none;
+  outline: none;
+  font-family: 'Snell Roundhand', cursive;
+  font-size: clamp(0.8rem, 3vw, 1.5rem);
+  font-weight: 200;
+  font-style: italic;
+  color: #6f1a1a;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+
+#sec-rsvp-details .rsvp-options-wrapper {
+  width: 80%;
+  padding: unset;
+  margin-top: 10px;
+}
+
+.rsvp-text-input.rsvp-input-error {
+  box-shadow: 0 0 10px rgba(176, 26, 26, 0.75);
+  border-radius: 4px;
+}
