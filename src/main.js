@@ -200,9 +200,15 @@ if (passportSeal && passportInner && passportGif && passportIntro && invitationC
 
     // Desvanecer el sonido un poco antes de los 4 segundos
     setTimeout(() => {
-      let fadeInterval = setInterval(() => {
-        if (audio.volume > 0.1) {
-          audio.volume -= 0.1;
+      let currentVolume = 1.0;
+      const fadeInterval = setInterval(() => {
+        currentVolume -= 0.1;
+        if (currentVolume > 0) {
+          try {
+            audio.volume = Math.max(0, currentVolume);
+          } catch (e) {
+            console.warn('No se pudo ajustar el volumen programáticamente:', e);
+          }
         } else {
           clearInterval(fadeInterval);
           audio.pause();
