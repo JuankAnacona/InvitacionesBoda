@@ -16,7 +16,22 @@
     />
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
-  <body>
+  <body class="scroll-locked">
+    <!-- Preloader Overlay -->
+    <div id="preloader-overlay" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="preloader-container">
+        <h2 class="preloader-title">Ryan & Luisa</h2>
+        <div class="preloader-progress-wrapper">
+          <div class="preloader-progress-bar" id="preloader-bar"></div>
+        </div>
+        <div class="preloader-percentage" id="preloader-percentage">0%</div>
+        <div class="preloader-bilingual-text">
+          Cargando invitación...<br>
+          Loading invitation...
+        </div>
+      </div>
+    </div>
+
     <div class="page-shell">
       <!-- Passport Intro: first interaction, tap the wax seal to open -->
       <section class="passport-intro" aria-label="Pasaporte de invitación">
@@ -36,6 +51,7 @@
             class="passport-seal"
             type="button"
             aria-label="Toca el sello para abrir el pasaporte"
+            disabled
           >
             <span class="passport-seal-pulse"></span>
           </button>

@@ -9,6 +9,111 @@ const passportGif = document.querySelector('.passport-gif');
 const invitationContainer = document.querySelector('.invitation-container');
 const weddingSite = document.querySelector('.wedding-site');
 
+// Preloader elements
+const preloaderOverlay = document.getElementById('preloader-overlay');
+const preloaderBar = document.getElementById('preloader-bar');
+const preloaderPercentage = document.getElementById('preloader-percentage');
+
+// Helper to preload small critical assets using standard Image
+const preloadImage = (url) => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = url;
+    img.onload = resolve;
+    img.onerror = resolve; // Resolve anyway to avoid blocking execution
+  });
+};
+
+// Helper to preload large GIF using fetch and ReadableStream to track progress
+const preloadGifWithProgress = async (url, onProgress) => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    
+    const contentLength = +response.headers.get('Content-Length');
+    if (!contentLength) {
+      console.warn('Content-Length missing, falling back to standard loading');
+      const blob = await response.blob();
+      return URL.createObjectURL(blob);
+    }
+
+    const reader = response.body.getReader();
+    let receivedLength = 0;
+    const chunks = [];
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      chunks.push(value);
+      receivedLength += value.length;
+      
+      const progress = (receivedLength / contentLength) * 100;
+      onProgress(progress);
+    }
+
+    const blob = new Blob(chunks, { type: 'image/gif' });
+    return URL.createObjectURL(blob);
+  } catch (error) {
+    console.error('Failed to preload GIF with progress, falling back:', error);
+    return url;
+  }
+};
+
+let loadedGifUrl = '';
+
+// Start preloading critical assets as soon as the page loads
+const startPreloading = async () => {
+  const gifUrl = '/passport-open.gif';
+  const criticalImages = [
+    '/passport-closed.png',
+    '/fondo-canva.jpg',
+    '/arco-top.png',
+    '/arco-mid.png',
+    '/arco-bottom.png',
+    '/ingles.png',
+    '/espanol.png'
+  ];
+
+  // Start preloading small assets in parallel
+  const assetsPromise = Promise.all(criticalImages.map(preloadImage));
+
+  // Preload huge GIF with progress tracking
+  try {
+    loadedGifUrl = await preloadGifWithProgress(gifUrl, (progress) => {
+      const roundedProgress = Math.min(Math.round(progress), 100);
+      if (preloaderBar) preloaderBar.style.width = `${roundedProgress}%`;
+      if (preloaderPercentage) preloaderPercentage.textContent = `${roundedProgress}%`;
+      if (preloaderOverlay) preloaderOverlay.setAttribute('aria-valuenow', roundedProgress);
+    });
+  } catch (err) {
+    console.error('Error loading main GIF:', err);
+    loadedGifUrl = gifUrl;
+  }
+
+  // Ensure other assets are also done loading
+  await assetsPromise;
+
+  // Complete preloading UI transition
+  if (preloaderBar) preloaderBar.style.width = '100%';
+  if (preloaderPercentage) preloaderPercentage.textContent = '100%';
+  if (preloaderOverlay) preloaderOverlay.setAttribute('aria-valuenow', '100');
+
+  setTimeout(() => {
+    if (preloaderOverlay) {
+      preloaderOverlay.classList.add('is-hidden');
+      preloaderOverlay.addEventListener('transitionend', () => preloaderOverlay.remove(), { once: true });
+    }
+    
+    // Enable the wax seal button
+    if (passportSeal) {
+      passportSeal.disabled = false;
+    }
+  }, 400); // Wait for the bar animation to finish
+};
+
+startPreloading();
+
 const showWeddingSite = (language) => {
   if (!weddingSite) return;
 
@@ -16,6 +121,9 @@ const showWeddingSite = (language) => {
   document.querySelectorAll('[data-es][data-en]').forEach((element) => {
     element.innerHTML = element.dataset[language];
   });
+
+  // Unlock body scroll
+  document.body.classList.remove('scroll-locked');
 
   const pageShell = document.querySelector('.page-shell');
   if (pageShell) {
@@ -80,8 +188,8 @@ if (passportSeal && passportInner && passportGif && passportIntro && invitationC
     if (hasOpened) return;
     hasOpened = true;
 
-    // Cargar el GIF al hacer clic para que inicie la animación desde el principio
-    passportGif.src = '/passport-open.gif';
+    // Cargar el GIF usando la URL pre-cargada
+    passportGif.src = loadedGifUrl || '/passport-open.gif';
     passportInner.classList.add('is-playing');
 
     // Reproducir el sonido del aeropuerto
