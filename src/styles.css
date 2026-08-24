@@ -50,6 +50,14 @@ body.scroll-locked {
   height: 100% !important;
 }
 
+body.in-wedding-site {
+  background-color: #53090b;
+  background-image: linear-gradient(rgba(45, 0, 0, 0.25), rgba(45, 0, 0, 0.25)), url('/principal/fondo_rojo_invitacion.png');
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 100% auto;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -1428,4 +1436,53 @@ body {
 
 .rsvp-select-instax:hover {
   transform: rotate(-2deg) scale(1.02);
+}
+
+/* Accommodation specific styles */
+.rsvp-accommodation-content {
+  inset: 10% 8% 8% 6%;
+}
+
+.rsvp-options-row {
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+}
+
+.rsvp-accommodation-text {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: clamp(0.6rem, 1.65vw, 0.82rem);
+  line-height: 1.45;
+  color: #000000;
+  margin: 0;
+  max-width: 90%;
+  text-align: center;
+}
+
+.rsvp-accommodation-text p {
+  margin: 0 0 6px 0;
+}
+
+.rsvp-accommodation-text p:last-child {
+  margin-bottom: 0;
+}
+
+.rsvp-important {
+  font-weight: bold;
+  color: #6f1a1a;
+}
+
+.rsvp-accommodation-subtext {
+  font-style: italic;
+  font-size: clamp(0.55rem, 1.5vw, 0.78rem);
+  opacity: 0.9;
+}
+
+#sec-rsvp-accommodation .rsvp-options-wrapper {
+  width: 80%;
+  padding: unset;
+}
+
+#sec-rsvp-accommodation .rsvp-select-title {
+  margin: 20px 0px 0px;
 }

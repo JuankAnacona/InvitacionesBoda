@@ -130,6 +130,7 @@ const showWeddingSite = (language) => {
 
     setTimeout(() => {
       pageShell.style.display = 'none';
+      document.body.classList.add('in-wedding-site');
       weddingSite.hidden = false;
 
       // Unlock scroll after page shell is hidden and wedding site is shown
@@ -142,6 +143,7 @@ const showWeddingSite = (language) => {
       });
     }, 500);
   } else {
+    document.body.classList.add('in-wedding-site');
     weddingSite.hidden = false;
 
     // Unlock scroll
@@ -287,10 +289,12 @@ if (rsvpButton && rsvpSelectionSite && weddingSite) {
   });
 }
 
-// Al hacer click en cualquier opción de RSVP, regresar al sitio de boda y hacer scroll a la confirmación (gracias) con transición suave
-const rsvpOptionButtons = document.querySelectorAll('.rsvp-option-btn');
+// Al hacer click en las opciones de la primera página RSVP
+const rsvpOptionButtons = document.querySelectorAll('#rsvp-selection-site .rsvp-option-btn');
+const rsvpAccommodationSite = document.getElementById('rsvp-accommodation-site');
+
 if (rsvpOptionButtons.length > 0) {
-  rsvpOptionButtons.forEach(btn => {
+  rsvpOptionButtons.forEach((btn, index) => {
     btn.addEventListener('click', () => {
       if (rsvpSelectionSite) {
         // Transición de salida para rsvpSelectionSite
@@ -301,18 +305,65 @@ if (rsvpOptionButtons.length > 0) {
           rsvpSelectionSite.hidden = true;
           rsvpSelectionSite.classList.remove('is-visible');
           
+          if (index === 0) {
+            // "Sí, ahí estaré" -> Ir a la página de Alojamiento
+            if (rsvpAccommodationSite) {
+              rsvpAccommodationSite.style.opacity = '0';
+              rsvpAccommodationSite.hidden = false;
+              window.scrollTo({ top: 0, behavior: 'instant' });
+              
+              requestAnimationFrame(() => {
+                rsvpAccommodationSite.style.transition = 'opacity 0.6s ease-in-out';
+                rsvpAccommodationSite.style.opacity = '1';
+                rsvpAccommodationSite.classList.add('is-visible');
+              });
+            }
+          } else {
+            // "No será posible" o "Aun no lo se" -> Ir a Agradecimiento (Sección 7)
+            if (weddingSite) {
+              weddingSite.style.opacity = '0';
+              weddingSite.hidden = false;
+              
+              const sec7 = document.getElementById('sec-7');
+              if (sec7) {
+                sec7.scrollIntoView({ behavior: 'instant', block: 'center' });
+              }
+              
+              requestAnimationFrame(() => {
+                weddingSite.style.transition = 'opacity 0.6s ease-in-out';
+                weddingSite.style.opacity = '1';
+                weddingSite.classList.add('is-visible');
+              });
+            }
+          }
+        }, 500);
+      }
+    });
+  });
+}
+
+// Al hacer click en las opciones de la página de Alojamiento -> Ir a Agradecimiento (Sección 7)
+const accommodationOptionButtons = document.querySelectorAll('#rsvp-accommodation-site .rsvp-option-btn');
+if (accommodationOptionButtons.length > 0) {
+  accommodationOptionButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (rsvpAccommodationSite) {
+        rsvpAccommodationSite.style.transition = 'opacity 0.5s ease-in-out';
+        rsvpAccommodationSite.style.opacity = '0';
+        
+        setTimeout(() => {
+          rsvpAccommodationSite.hidden = true;
+          rsvpAccommodationSite.classList.remove('is-visible');
+          
           if (weddingSite) {
-            // Preparar weddingSite invisible
             weddingSite.style.opacity = '0';
             weddingSite.hidden = false;
             
-            // Posicionar instantáneamente en la sección 7 de agradecimiento
             const sec7 = document.getElementById('sec-7');
             if (sec7) {
               sec7.scrollIntoView({ behavior: 'instant', block: 'center' });
             }
             
-            // Transición de entrada para weddingSite
             requestAnimationFrame(() => {
               weddingSite.style.transition = 'opacity 0.6s ease-in-out';
               weddingSite.style.opacity = '1';
