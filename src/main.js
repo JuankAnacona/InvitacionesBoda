@@ -166,7 +166,7 @@ const showWeddingSite = (language) => {
 if (passportSeal && passportInner && passportGif && passportIntro && invitationContainer) {
   let hasOpened = false;
   let hasRevealed = false;
-  const TRANSITION_DELAY = 4000; // 4 seconds
+  const TRANSITION_DELAY = 5200; // 6 seconds
 
   const revealInvitation = () => {
     if (hasRevealed) return;
@@ -212,7 +212,7 @@ if (passportSeal && passportInner && passportGif && passportIntro && invitationC
       console.log('El audio no pudo reproducirse por políticas de reproducción automática:', err);
     });
 
-    // Desvanecer el sonido un poco antes de los 4 segundos
+    // Desvanecer el sonido un poco antes de los 4 segundos (para que dure solo 4 segundos)
     setTimeout(() => {
       let currentVolume = 1.0;
       const fadeInterval = setInterval(() => {
@@ -230,7 +230,7 @@ if (passportSeal && passportInner && passportGif && passportIntro && invitationC
       }, 50);
     }, 3500); // Se desvanece durante los últimos 500ms
 
-    // Revelar la invitación después de 4 segundos
+    // Revelar la invitación después de la transición
     setTimeout(revealInvitation, TRANSITION_DELAY);
   });
 }
