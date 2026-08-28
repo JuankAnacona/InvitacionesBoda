@@ -69,6 +69,7 @@ body {
 .page-shell {
   width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,6 +80,8 @@ body {
 .invitation-container {
   position: relative;
   width: min(88vw, 410px);
+  max-height: 82vh;
+  max-height: 82dvh;
   aspect-ratio: 612 / 1150;
   display: flex;
   justify-content: center;
@@ -122,6 +125,8 @@ body {
 .passport-intro-inner {
   position: relative;
   width: min(82vw, 360px);
+  max-height: 82vh;
+  max-height: 82dvh;
   aspect-ratio: 1080 / 1920;
   margin: 0 auto;
 }
