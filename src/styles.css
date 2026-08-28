@@ -1318,6 +1318,15 @@ body {
    RSVP SELECTION PAGE
    ========================================================================== */
 
+#rsvp-selection-site:not([hidden]),
+#rsvp-accommodation-site:not([hidden]),
+#rsvp-details-site:not([hidden]) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .page-rsvp-select .page-inner {
   width: min(95vw, 560px);
 }
