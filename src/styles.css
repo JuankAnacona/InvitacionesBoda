@@ -311,7 +311,7 @@ body {
   z-index: 6;
   width: 100%;
   height: 100%;
-  padding: 35% 5% 30% 5%;
+  padding: 28% 5% 30% 5%;
   gap: 35px;
   display: flex;
   flex-direction: column;
@@ -335,7 +335,7 @@ body {
   margin-top: 0.9rem;
   margin-bottom: 0.5rem;
   font-family: 'Snell Roundhand', cursive;
-  font-size: clamp(3.0rem, 8.8vw, 4.3rem);
+  font-size: clamp(3.0rem, 8.8vw, 3.3rem);
   font-weight: 200;
   line-height: 0.88;
   color: var(--ink-red);
