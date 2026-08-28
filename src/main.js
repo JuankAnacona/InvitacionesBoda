@@ -167,6 +167,8 @@ if (passportSeal && passportInner && passportGif && passportIntro && invitationC
   let hasOpened = false;
   let hasRevealed = false;
   let bgMusic = null;
+  let audioCtx = null;
+  let gainNode = null;
   const TRANSITION_DELAY = 5200; // 6 seconds
 
   const revealInvitation = () => {
@@ -179,19 +181,6 @@ if (passportSeal && passportInner && passportGif && passportIntro && invitationC
       () => passportIntro.remove(),
       { once: true }
     );
-
-    // Iniciar la subida de volumen progresiva de la música que ya se está reproduciendo
-    if (bgMusic) {
-      let vol = 0;
-      const fadeInterval = setInterval(() => {
-        if (vol < 0.6) { // Volumen máximo de 0.6
-          vol += 0.03;
-          bgMusic.volume = Math.min(vol, 0.6);
-        } else {
-          clearInterval(fadeInterval);
-        }
-      }, 150); // Incrementa el volumen cada 150ms
-    }
   };
 
   passportSeal.addEventListener('click', () => {
@@ -202,8 +191,24 @@ if (passportSeal && passportInner && passportGif && passportIntro && invitationC
     // Esto se realiza de manera síncrona dentro del evento de interacción del usuario
     // para desbloquear la reproducción de audio en iOS (Safari y Chrome para iPhone).
     bgMusic = new Audio('/Cancion-fondo.mp3');
-    bgMusic.volume = 0;
     bgMusic.loop = true;
+
+    // Inicializar Web Audio API para controlar el volumen digitalmente en iOS (donde la propiedad volume es de sólo lectura)
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (AudioContextClass) {
+      audioCtx = new AudioContextClass();
+      gainNode = audioCtx.createGain();
+      gainNode.gain.value = 0; // Iniciar en silencio
+      const source = audioCtx.createMediaElementSource(bgMusic);
+      source.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    } else {
+      bgMusic.volume = 0;
+    }
+
     bgMusic.play().catch((err) => {
       console.log('La música de fondo no pudo pre-iniciarse:', err);
     });
@@ -236,6 +241,26 @@ if (passportSeal && passportInner && passportGif && passportIntro && invitationC
       }, 50);
     }, 3500); // Se desvanece durante los últimos 500ms
 
+    // Iniciar la subida de volumen progresiva de la música 2 segundos después del tono del aeropuerto
+    setTimeout(() => {
+      if (bgMusic) {
+        let vol = 0;
+        const fadeInterval = setInterval(() => {
+          if (vol < 0.6) { // Volumen máximo de 0.6
+            vol += 0.03;
+            const targetVol = Math.min(vol, 0.6);
+            if (gainNode && audioCtx) {
+              gainNode.gain.setValueAtTime(targetVol, audioCtx.currentTime);
+            } else {
+              bgMusic.volume = targetVol;
+            }
+          } else {
+            clearInterval(fadeInterval);
+          }
+        }, 150); // Incrementa el volumen cada 150ms
+      }
+    }, 2000);
+
     // Revelar la invitación después de la transición
     setTimeout(revealInvitation, TRANSITION_DELAY);
   });
@@ -245,7 +270,10 @@ if (passportSeal && passportInner && passportGif && passportIntro && invitationC
     if (!bgMusic) return;
     if (document.visibilityState === 'hidden') {
       bgMusic.pause();
-    } else if (document.visibilityState === 'visible' && hasRevealed) {
+    } else if (document.visibilityState === 'visible') {
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
       bgMusic.play().catch((err) => {
         console.log('La música no pudo reanudarse automáticamente:', err);
       });
