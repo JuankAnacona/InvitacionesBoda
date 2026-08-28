@@ -166,6 +166,7 @@ const showWeddingSite = (language) => {
 if (passportSeal && passportInner && passportGif && passportIntro && invitationContainer) {
   let hasOpened = false;
   let hasRevealed = false;
+  let bgMusic = null;
   const TRANSITION_DELAY = 5200; // 6 seconds
 
   const revealInvitation = () => {
@@ -179,28 +180,33 @@ if (passportSeal && passportInner && passportGif && passportIntro && invitationC
       { once: true }
     );
 
-    // Reproducir la música de fondo con volumen progresivo
-    const bgMusic = new Audio('/Cancion-fondo.mp3');
-    bgMusic.volume = 0;
-    bgMusic.loop = true;
-    bgMusic.play().then(() => {
+    // Iniciar la subida de volumen progresiva de la música que ya se está reproduciendo
+    if (bgMusic) {
       let vol = 0;
       const fadeInterval = setInterval(() => {
         if (vol < 0.6) { // Volumen máximo de 0.6
           vol += 0.03;
-          bgMusic.volume = Math.min(vol, 1);
+          bgMusic.volume = Math.min(vol, 0.6);
         } else {
           clearInterval(fadeInterval);
         }
       }, 150); // Incrementa el volumen cada 150ms
-    }).catch((err) => {
-      console.log('La música de fondo fue bloqueada o falló:', err);
-    });
+    }
   };
 
   passportSeal.addEventListener('click', () => {
     if (hasOpened) return;
     hasOpened = true;
+
+    // Inicializar y reproducir música de fondo en volumen 0 inmediatamente.
+    // Esto se realiza de manera síncrona dentro del evento de interacción del usuario
+    // para desbloquear la reproducción de audio en iOS (Safari y Chrome para iPhone).
+    bgMusic = new Audio('/Cancion-fondo.mp3');
+    bgMusic.volume = 0;
+    bgMusic.loop = true;
+    bgMusic.play().catch((err) => {
+      console.log('La música de fondo no pudo pre-iniciarse:', err);
+    });
 
     // Cargar el GIF usando la URL pre-cargada
     passportGif.src = loadedGifUrl || '/passport-open.gif';
@@ -232,6 +238,18 @@ if (passportSeal && passportInner && passportGif && passportIntro && invitationC
 
     // Revelar la invitación después de la transición
     setTimeout(revealInvitation, TRANSITION_DELAY);
+  });
+
+  // Pausar la música si el usuario minimiza el navegador, cambia de pestaña o bloquea el móvil
+  document.addEventListener('visibilitychange', () => {
+    if (!bgMusic) return;
+    if (document.visibilityState === 'hidden') {
+      bgMusic.pause();
+    } else if (document.visibilityState === 'visible' && hasRevealed) {
+      bgMusic.play().catch((err) => {
+        console.log('La música no pudo reanudarse automáticamente:', err);
+      });
+    }
   });
 }
 
