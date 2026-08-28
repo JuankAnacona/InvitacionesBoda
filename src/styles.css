@@ -27,6 +27,7 @@ html {
   padding: 0;
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -419,6 +420,7 @@ body {
   --gold-accent: #c49a53;
 
   width: 100%;
+  overflow-x: hidden;
   min-height: 100vh;
   color: #fff8ea;
   background-color: var(--wine-main);
