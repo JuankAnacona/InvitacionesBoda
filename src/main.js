@@ -265,20 +265,7 @@ if (passportSeal && passportInner && passportGif && passportIntro && invitationC
     setTimeout(revealInvitation, TRANSITION_DELAY);
   });
 
-  // Pausar la música si el usuario minimiza el navegador, cambia de pestaña o bloquea el móvil
-  document.addEventListener('visibilitychange', () => {
-    if (!bgMusic) return;
-    if (document.visibilityState === 'hidden') {
-      bgMusic.pause();
-    } else if (document.visibilityState === 'visible') {
-      if (audioCtx && audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      bgMusic.play().catch((err) => {
-        console.log('La música no pudo reanudarse automáticamente:', err);
-      });
-    }
-  });
+
 }
 
 
